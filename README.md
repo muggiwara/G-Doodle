@@ -1,3 +1,14 @@
+# `/!\` A LIRE AVANT `/!\`
+
+J'ai mis en place:
+ * les référence entre le projet server et le projet core
+  * par default le site authorize tout (à toi de configurer la partie auth)
+ * un example de hub signalR côté serveur
+ * j'ai mis dapper et avec le service simpleCrud je te laisse regarder comment ça fonctionne.
+ * faudra que se chope sur slack ou discord pour s'organiser :)
+ * je mettrai en place la partie chat dans peu de temps
+
+
 # Devoleppement environment
 
 ## Node.js

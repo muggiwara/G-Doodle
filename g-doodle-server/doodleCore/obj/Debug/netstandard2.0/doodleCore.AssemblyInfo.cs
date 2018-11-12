@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("doodleCore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0-alpha")]
 [assembly: System.Reflection.AssemblyProductAttribute("doodleCore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("doodleCore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
