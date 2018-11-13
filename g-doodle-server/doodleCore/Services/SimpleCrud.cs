@@ -16,7 +16,7 @@ namespace doodleCore.Services
         public IDbConnection connection;
         
         private SimpleCrud()
-            : this("Data Source=.;Initial Catalog=DataBase;Integrated Security=True")
+            : this("Data Source=DESKTOP-3B9MPQG;Initial Catalog=GDoodle;Integrated Security=True")
         {
         }
 
