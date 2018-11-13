@@ -1,8 +1,0 @@
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\bin\Debug\netstandard2.0\doodleCore.deps.json
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\bin\Debug\netstandard2.0\doodleCore.dll
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\bin\Debug\netstandard2.0\doodleCore.pdb
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\obj\Debug\netstandard2.0\doodleCore.csproj.CoreCompileInputs.cache
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\obj\Debug\netstandard2.0\doodleCore.AssemblyInfoInputs.cache
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\obj\Debug\netstandard2.0\doodleCore.AssemblyInfo.cs
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\obj\Debug\netstandard2.0\doodleCore.dll
-D:\Dev\G-Doodle\g-doodle-server\doodleCore\obj\Debug\netstandard2.0\doodleCore.pdb
