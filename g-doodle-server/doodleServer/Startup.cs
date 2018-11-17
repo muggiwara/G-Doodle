@@ -60,7 +60,8 @@ namespace doodleServer
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chat");
+                routes.MapHub<ChannelHub>("/channel");
+                routes.MapHub<UserHub>("/user");
             });
 
             app.UseHttpsRedirection();

@@ -1,8 +1,18 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "./g-doodle-client",
+			"name": "g-doodle-client"
+		},
+		{
+			"path": "./g-doodle-server",
+			"name": "g-doodle-server"
+		},
+		{
+			"path": ".",
+			"name": ".root"
 		}
+
 	],
 	"settings": {}
 }

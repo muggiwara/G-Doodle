@@ -1,7 +1,7 @@
 # `/!\` A LIRE AVANT `/!\`
 
 J'ai mis en place:
- * les référence entre le projet server et le projet core
+ * les références entre le projet server et le projet core
   * par default le site authorize tout (à toi de configurer la partie auth)
  * un example de hub signalR côté serveur
  * j'ai mis dapper et avec le service simpleCrud je te laisse regarder comment ça fonctionne.
@@ -49,7 +49,7 @@ Now you can go to the angular SPA from this url `http://localhost:4200/`.
 ## Debug project
 Launch with F5 or by the debugger window (Crtl + Shift + D).
 
-# INotWeb
+# G-Doodle
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
