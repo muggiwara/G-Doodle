@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using doodleCore.Models;
 using doodleCore.Services;
+using doodleServer.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace doodleServer.Hubs
@@ -18,7 +18,7 @@ namespace doodleServer.Hubs
 
         public void Update(Channel channel)
         {
-            Clients.OthersInGroup(channel.Guid).SendAsync(UPDATE, channel);
+            Clients.OthersInGroup(channel.guid).SendAsync(UPDATE, channel);
         }
     }
 }

@@ -1,7 +1,11 @@
 using System.Collections.Generic;
-using doodleCore.Models;
+using doodleCore.DTO;
+using doodleServer.Models;
 using doodleCore.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace doodleServer.Controllers
 {
@@ -12,23 +16,23 @@ namespace doodleServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get()
         {
-            var users = SimpleCrud.Current.GetAll<User>(new { status = UserStatus.OFFLINE }, "status != @status");
+            var users = UserService.Current.GetAll();
             if (users == null)
             {
                 return NotFound();
             }
-            return Ok(users);
+            return Ok(users.Select(u => new User(u)));
         }
 
-         [HttpGet("{id}", Name = "GetUser")]
+        [HttpGet("{id}", Name = "GetUser")]
         public ActionResult<User> GetById(int id)
         {
-            var user = SimpleCrud.Current.Get<User>(new { id = id });
+            var user = UserService.Current.GetById(id);
             if (user == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(new User(user));
         }
 
         [HttpPost]
@@ -36,23 +40,31 @@ namespace doodleServer.Controllers
         {
             try
             {
-                var res = SimpleCrud.Current.Insert(user);
-            if (res != 1)
+                var usr = UserService.Current.Insert(user.ToDto());
+                if (usr == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(usr);
+            }
+            catch (SqlException ex)
             {
-                return BadRequest();
+                if (ex.Number == 2627)
+                {
+                    var reg = new Regex(@".*\((.*)\).*");
+                    var match = reg.Match(ex.Message);
+                    var values = match.Groups.Last().Value.Split(", ".ToArray(), System.StringSplitOptions.RemoveEmptyEntries);
+                    return BadRequest(values.Select(v => $"{v} allready exist"));
+                }
             }
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
-            return CreatedAtRoute("GetByName", new { id = user.id }, user);
+            return BadRequest();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) {
-            var res = SimpleCrud.Current.Delete<User>(new { id =id });
-            if (res != 1) {
+        public IActionResult Delete(int id)
+        {
+            if (!UserService.Current.Delete(id))
+            {
                 return NotFound();
             }
             return Ok();
@@ -61,11 +73,11 @@ namespace doodleServer.Controllers
         [HttpPut]
         public IActionResult Update(User user)
         {
-            var res = SimpleCrud.Current.Update<User>(user, new { id = user.id});
-            if (res != 1){
-                return BadRequest();
+            if (!UserService.Current.Update(user.ToDto()))
+            {
+                return BadRequest(false);
             }
-            return Ok();
+            return Ok(true);
         }
     }
 }

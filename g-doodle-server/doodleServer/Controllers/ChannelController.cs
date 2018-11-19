@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using doodleCore.Models;
+using doodleCore.DTO;
 using doodleCore.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using doodleServer.Models;
 
 namespace doodleServer.Controllers
 {
@@ -14,42 +15,40 @@ namespace doodleServer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Channel>> Get()
         {
-            var channels = SimpleCrud.Current.GetAll<Channel>(new { isPrivate = false });
+            var channels = ChannelService.Current.GetAll();
             if (channels == null)
             {
                 return NotFound();
             }
-            return Ok(channels);
+            return Ok(channels.Select(c => new Channel(c)));
         }
 
-        [HttpGet("{name}", Name = "GetChannel")]
-        public ActionResult<Channel> GetByName(string name)
+        [HttpGet("{id}", Name = "GetChannel")]
+        public ActionResult<Channel> GetById(int id)
         {
-            var channel = SimpleCrud.Current.Get<Channel>(new { name = name });
+            var channel = ChannelService.Current.GetById(id);
             if (channel == null)
             {
                 return NotFound();
             }
-            return Ok(channel);
+            return Ok(new Channel(channel));
         }
 
         [HttpPost]
         public IActionResult Create(Channel channel)
         {
-            channel.Guid = Guid.NewGuid().ToString();
-            var res = SimpleCrud.Current.Insert(channel);
-            
-            if (res != 1)
+            channel.guid = Guid.NewGuid().ToString();
+            var chan = ChannelService.Current.Insert(channel.ToDto());
+            if (chan == null)
             {
                 return BadRequest();
             }
-            return CreatedAtRoute("GetByName", new { name = channel.name }, channel);
+            return CreatedAtRoute("GetById", new { id = chan.id }, new Channel(chan));
         }
 
-        [HttpDelete("{id}/{userId}")]
-        public IActionResult Delete(int id, int userId) {
-            var res = SimpleCrud.Current.Delete<Channel>(new { id = id, adminId = userId });
-            if (res != 1) {
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) {
+            if (!ChannelService.Current.Delete(id)) {
                 return NotFound();
             }
             return Ok();
@@ -58,8 +57,8 @@ namespace doodleServer.Controllers
         [HttpPut]
         public IActionResult Update(Channel channel)
         {
-            var res = SimpleCrud.Current.Update<Channel>(channel, new { name = channel.name});
-            if (res != 1){
+            
+            if (!ChannelService.Current.Update(channel.ToDto())){
                 return BadRequest();
             }
             return Ok();

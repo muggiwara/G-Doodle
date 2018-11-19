@@ -1,9 +1,12 @@
 using System;
+using doodleCore.CustomAttributes;
 
-namespace doodleCore.Models
+namespace doodleCore.DTO
 {
-    public class Message
+    [Name("Message")]
+    public class MessageDto
     {
+        [Primary]
         public int id { get; set; }
         public string message { get; set; }
         public Owner owner { get; set; }

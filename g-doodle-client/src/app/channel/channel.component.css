@@ -1,0 +1,32 @@
+.side-bar{
+  display: block;
+  position: absolute;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  z-index: 1039;
+  background: grey;
+}
+
+.side-bar + .side-bar-toggle {
+  display: block;
+  position: absolute;
+  top: 51px;
+  left: 25%;
+  z-index: 1039;
+}
+
+.side-bar[class~="hidden"] + .side-bar-toggle {
+  left: 0%;
+}
+
+@media only screen and (max-width: 767px) {
+  .side-bar{
+    width: 75%;
+  }
+
+  .side-bar + .side-bar-toggle {
+    left: 75%;
+  }
+}

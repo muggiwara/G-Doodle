@@ -1,12 +1,15 @@
+using doodleCore.CustomAttributes;
 using doodleCore.Services;
 
-namespace doodleCore.Models
+namespace doodleCore.DTO
 {
-    public class User
+    [Name("User")]
+    public class UserDto
     {
         [Primary]
         public int id {get;set;}
         public string name {get;set;}
+        public string password {get;set;}
         public string email {get;set;}
         public UserStatus status {get;set;}
         public string connectionId {get;set;}

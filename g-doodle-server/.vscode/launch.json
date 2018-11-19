@@ -4,22 +4,15 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
-       {
-           "type": "chrome",
-           "request": "launch",
-           "name": "Launch Chrome",
-           "url": "http://localhost:4200",
-           "webRoot": "${workspaceFolder}"
-       },
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/g-doodle-server/doodleServer/bin/Debug/netcoreapp2.1/doodleServer.dll",
+            "program": "${workspaceFolder}/doodleServer/bin/Debug/netcoreapp2.1/doodleServer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/g-doodle-server/doodleServer",
+            "cwd": "${workspaceFolder}/doodleServer",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

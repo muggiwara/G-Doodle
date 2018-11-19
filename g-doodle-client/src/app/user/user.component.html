@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+        aria-controls="app-user">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">G-Doodle</a>
+    </div>
+    <div class="collapse navbar-collapse" id="app-user" [collapse]="isCollapsed" [ngSwitch]="isConnected">
+      <ul class="nav navbar-nav navbar-right" *ngSwitchCase="false">
+        <li><a href="#" (click)="logIn()">Log-in</a></li>
+        <li><a href="#" (click)="edit(true)">Sign-in</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngSwitchCase="true">
+        <li class="dropdown" dropdown>
+          <a href="#" id="user-status" dropdownToggle class="dropdown-toggle" role="button" (click)="false" aria-controls="user-status-dropdown">{{UserStatus[user.status]}}</a>
+            <ul id="user-status-dropdown" class="dropdown-menu" *dropdownMenu role="menu" aria-labelledby="user-status">
+                <li *ngFor="let stat of UserStatus | enumToArray"><a href="#" (click)="changeStatus(UserStatus[stat])" [class.hidden]="UserStatus[stat] === user.status">{{stat}}</a></li>
+            </ul>
+        </li>
+        <li class="dropdown" dropdown>
+          <a href="#" id="user-link" dropdownToggle class="dropdown-toggle" role="button" (click)="false" aria-controls="user-dropdown">{{user.name}}<span
+              class="caret"></span></a>
+          <ul id="user-dropdown" class="dropdown-menu" *dropdownMenu role="menu" aria-labelledby="user-link">
+            <li><a href="#" (click)="edit()">Edit</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" (click)="logOut()">Log-out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>

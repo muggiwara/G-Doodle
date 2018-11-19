@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../app.settings';
 import { User } from './user';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
 
   constructor(private http: HttpClient) { }
@@ -26,6 +28,10 @@ export class UserService {
 
   delete(id: number) {
     return this.http.delete(`${API}api/user/${id}`);
+  }
+
+  login(nameOrEmail: string, password: string) {
+    return this.http.post(`${API}api/auth/login`, {nameOrEmail : nameOrEmail, password: password});
   }
 
 }

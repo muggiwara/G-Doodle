@@ -1,0 +1,18 @@
+<h3>Login</h3>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="text-center">
+  <div *ngFor="let error of errors">
+    <alert type="danger" [dismissible]="true">
+      <p>{{error}}</p>
+    </alert>
+  </div>
+  <div class="form-group">
+    <label for="login">login</label>
+    <input type="text" class="form-control" name="login" placeholder="Name or Email" formControlName="login">
+  </div>
+  <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password" formControlName="password">
+    </div>
+  <button type="button" class="btn btn-default" (click)="onExit()">Cancel</button>
+  <button type="submit" class="btn btn-default" [disabled]="!userForm.valid">Submit</button>
+</form>

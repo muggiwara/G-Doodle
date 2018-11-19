@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/g-doodle-server/doodleServer/doodleServer.csproj"
+                "${workspaceFolder}/doodleServer/doodleServer.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

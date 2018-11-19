@@ -1,0 +1,21 @@
+<div (clickOutside)="show = false">
+    <div class="side-bar" [class.hidden]="!show">
+        <button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus" (click)="edit(true)"></span>New Channel</button>
+        <accordion [closeOthers]="true">
+          <accordion-group>
+              <button class="btn btn-link btn-block clearfix" accordion-heading>
+                  <div class="pull-left float-left">Users</div>
+                  <span class="badge badge-secondary float-right pull-right">{{ UsersCount }}</span>
+                </button>
+              <app-user-list></app-user-list>
+          </accordion-group>
+        </accordion>
+    </div>
+    <div class="side-bar-toggle">
+        <a href="#" class="btn btn-info btn-xs" (click)="show = !show"><span class="glyphicon"
+          [class.glyphicon-chevron-left]="show"
+          [class.glyphicon-chevron-right]="!show"></span>
+        </a>
+    </div>
+</div>
+
